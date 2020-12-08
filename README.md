@@ -10,61 +10,61 @@
 
 ### 2. 根据以下要求，用建表语句定义所需的数据表
 
-1. 该数据库记录某采油厂对油水井实施作业时所消耗的成本。（作业：为保证油水井正常生产所实施的工程项目）
-2. 成本的消耗（***成本表costTable***）分为预算、结算、入账三个状态。
-预算：采油队向管理部门提出作业申请，并经管理部门批准后，由管理部门负责录入。
-结算：某次作业施工结束后，由管理部门与施工单位共同核算各种成本，由管理部门负责录入。
-入账：结算后，财务部门将成本计入采油厂账目，由财务部门录入。
-（一）、 预算状态时需要录入的数据：（★：字符型   ◆数字型   ▲日期型）
-★单据号：某一作业项目的编号 invoice(varchar(16))
-★预算单位：指需要对油水井实施作业的采油队代码 departmentId(varchar(16))
-★井号：需要实施作业的油水井 oilWall(varchar(16))
-◆预算金额   budgetAmount(decimal(10,2))
-★预算人   budgetPerson(varchar(16))
-▲预算日期 budgetDate(datetime))
-（二）、 结算状态时需要录入的数据：（★：字符型   ◆数字型   ▲日期型）
-调出某条预算记录，录入以下数据：
-▲开工日期  startDate(datetime)
-▲完工日期   endDate(datetime)
-★施工单位   constructionUnit(varchar(16))
-★施工内容  constructionContent(varchar(16))
-◆材料费（要求另外用表单独记录材料消耗的明细） materialCost(decimal(10,2))
-***材料消耗表 materialCostDetail***（★单据号  invoice(varchar(16))  ★物码 materialId(decimal(10,2))  ◆消耗数量 consumeQuantity(decimal(10,2)) ）
-◆人工费 presonCost(decimal(10,2))
-◆设备费 equipmentCost(decimal(10,2))
+1. 该数据库记录某采油厂对油水井实施作业时所消耗的成本。（作业：为保证油水井正常生产所实施的工程项目）  
+2. 成本的消耗（***成本表costTable***）分为预算、结算、入账三个状态。  
+预算：采油队向管理部门提出作业申请，并经管理部门批准后，由管理部门负责录入。  
+结算：某次作业施工结束后，由管理部门与施工单位共同核算各种成本，由管理部门负责录入。  
+入账：结算后，财务部门将成本计入采油厂账目，由财务部门录入。  
+（一）、 预算状态时需要录入的数据：（★：字符型   ◆数字型   ▲日期型）  
+★单据号：某一作业项目的编号 invoice(varchar(16))  
+★预算单位：指需要对油水井实施作业的采油队代码 departmentId(varchar(16))  
+★井号：需要实施作业的油水井 oilWall(varchar(16))  
+◆预算金额   budgetAmount(decimal(10,2))  
+★预算人   budgetPerson(varchar(16))  
+▲预算日期 budgetDate(datetime))  
+（二）、 结算状态时需要录入的数据：（★：字符型   ◆数字型   ▲日期型）  
+调出某条预算记录，录入以下数据：  
+▲开工日期  startDate(datetime)  
+▲完工日期   endDate(datetime)  
+★施工单位   constructionUnit(varchar(16))  
+★施工内容  constructionContent(varchar(16))  
+◆材料费（要求另外用表单独记录材料消耗的明细） materialCost(decimal(10,2))  
+***材料消耗表 materialCostDetail***（★单据号  invoice(varchar(16))  ★物码 materialId(decimal(10,2))  ◆消耗数量 consumeQuantity(decimal(10,2)) ）  
+◆人工费 presonCost(decimal(10,2))  
+◆设备费 equipmentCost(decimal(10,2))  
 ◆其它费用 otherCost(decimal(10,2))
-◆结算金额（材料费+人工费+设备费+其它费用）allCost(decimal(10,2))
-★结算人  settlePreson(varchar(16))
-▲结算日期 settleDate(datetime)
-（三）、 入账状态时需要录入的数据：（★：字符型   ◆数字型   ▲日期型）
-调出某条结算记录，录入以下数据：
-◆入账金额 recordAmount(decimal(10,2))
-★入账人 recordPerson(varchar(16))
-▲入账日期 recordDate(datetime)
+◆结算金额（材料费+人工费+设备费+其它费用）allCost(decimal(10,2))  
+★结算人  settlePreson(varchar(16))  
+▲结算日期 settleDate(datetime)  
+（三）、 入账状态时需要录入的数据：（★：字符型   ◆数字型   ▲日期型）  
+调出某条结算记录，录入以下数据：  
+◆入账金额 recordAmount(decimal(10,2))  
+★入账人 recordPerson(varchar(16))  
+▲入账日期 recordDate(datetime)  
 
 
 
 
 
-3. 为了避免出现数据的不一致和方便数据录入，要求定义以下基础表：（★：字符型）
+3. 为了避免出现数据的不一致和方便数据录入，要求定义以下基础表：（★：字符型）  
 
-***单位表 departTable***：
-★单位代码   departID(varchar(16))
-★单位名称   departName(varcahr(16))
+***单位表 departTable***：  
+★单位代码   departID(varchar(16))  
+★单位名称   departName(varcahr(16))  
 
 
 ***油水井表 oilWallTable***：
-★井号   oilWallId(varcahr(16))
-★井别：油井/水井   oilWallType(varcahr(16))
-★单位代码  （表示某口井由哪个单位负责管理） departID(varcharID(16))
+★井号   oilWallId(varcahr(16))  
+★井别：油井/水井   oilWallType(varcahr(16))  
+★单位代码  （表示某口井由哪个单位负责管理） departID(varcharID(16))  
 
 
 
 ***材料表 materiaTable***：
-★物码   materialId(varchar(16))
-★名称   materialName(varchar(16))
-★计量单位   measureUnit(varchar(16))
-◆单价   Price(decimal(10,2))
+★物码   materialId(varchar(16))  
+★名称   materialName(varchar(16))  
+★计量单位   measureUnit(varchar(16))  
+◆单价   Price(decimal(10,2))  
 
 
 
